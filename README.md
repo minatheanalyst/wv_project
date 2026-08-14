@@ -2,7 +2,7 @@ README
 
 Regional Vulnerability Following Industrial Decline
 
-*An exploratory analysis of mining, labor-market, and demographic change in West Virginia, 2011–2024*
+An exploratory analysis of mining, labor-market, and demographic change in West Virginia, 2011–2024
 
 1. Introduction
 
@@ -14,20 +14,21 @@ Baseline mining dependence, subsequent mining employment decline, and change are
 
 The analysis is informed by a simple post-industrial adjustment perspective: communities with greater dependence on a declining industry may experience greater disruption, but their subsequent changes may differ depending on local economic and demographic conditions. The analysis is descriptive. It doesn't claim causality because the study covers only seven counties and uses observational data, making it difficult to separate the effects of mining decline from other factors that may have shaped these communities. It looks specifically at variation among the seven exposed counties within West Virginia.
 
----
-
 2. Data and Approach
 
 The analysis uses three public datasets:
 
-- Mining employment data from the Mine Safety and Health Administration's (MSHA) Mine Employment and Coal Production Database.
-- County-level labor-force and employment data from the Bureau of Labor Statistics' (BLS) Local Area Unemployment Statistics (LAUS) program.
-- Population and age estimates from the U.S. Census Bureau's American Community Survey (ACS) 5-year estimates.
+Mining employment data from the Mine Safety and Health Administration's (MSHA) Mine Employment and Coal Production Database.
+
+County-level labor-force and employment data from the Bureau of Labor Statistics' (BLS) Local Area Unemployment Statistics (LAUS) program.
+
+Population and age estimates from the U.S. Census Bureau's American Community Survey (ACS) 5-year estimates.
 
 The workflow has two main stages:
 
-1. Python is used for source-data cleaning, filtering, aggregation, merging, and preparation of county-year datasets.
-2. Power BI is used for the final data model, DAX measures, visualization, and comparative analysis.
+Python is used for source-data cleaning, filtering, aggregation, merging, and preparation of county-year datasets.
+
+Power BI is used for the final data model, DAX measures, visualization, and comparative analysis.
 
 MSHA mine-level records were aggregated to annual county-level mining employment totals after removing inactive mines and facilities with zero production. BLS annual labor-force, employment, unemployment, and unemployment-rate estimates were compiled for West Virginia counties. Missing county-year observations were treated as unavailable rather than zero. ACS estimates were used to measure population and demographic change, including changes in the working-age and older populations.
 
@@ -45,40 +46,32 @@ The analysis covers 2000–2024, with particular attention to the period after 2
 
 2011 is used as the common reference point because statewide West Virginia mining employment reached its highest observed level that year. That's a statewide baseline, not a claim that every county hit its own individual peak in 2011. Several counties reached their own mining employment peaks earlier or later, and the county-level tables and charts throughout this project treat that separately from the statewide reference year.
 
----
-
 3. Project Structure
 
 The project follows a simple workflow from source data to final visualization:
 
-```text
-source data → Python processing → processed CSV files → Power BI model → dashboard
-```
+source data to Python processing to processed CSV files to Power BI model to dashboard
 
 The project is organized as follows:
 
-```text
-project/
-├── data/
-│   ├── raw/
-│   │   ├── mining/
-│   │   ├── labor/
-│   │   └── demo/
-│   └── processed/
-├── python/
-│   ├── 01_labor_demo.py.ipynb
-│   └── 02_mining.py.ipynb
-├── powerbi/
-│   ├── WV_dashboard
-│   └── WV_static.pdf
-├── figma/
-│   └── dashboard design and visual assets
-└── README.txt
-```
+project
+  data
+    raw
+      mining
+      labor
+      demo
+    processed
+  python
+    01_labor_demo.py.ipynb
+    02_mining.py.ipynb
+  powerbi
+    WV_dashboard
+    WV_static.pdf
+  figma
+    dashboard design and visual assets
+  README.txt
 
-The `raw/` folder contains the original source data, organized into mining, labor-market, and demographic data. The `processed/` folder contains the county-year datasets prepared for analysis and loaded into Power BI. The `python/` folder contains the data-processing notebooks, while `powerbi/` contains the dashboard and static PDF version. The `figma/` folder contains the design work used for the dashboard layout and visual elements.
-
----
+The raw folder contains the original source data, organized into mining, labor-market, and demographic data. The processed folder contains the county-year datasets prepared for analysis and loaded into Power BI. The python folder contains the data-processing notebooks, while powerbi contains the dashboard and static PDF version. The figma folder contains the design work used for the dashboard layout and visual elements.
 
 4. Python Data Processing
 
@@ -99,8 +92,6 @@ The processing workflow:
 
 The Python stage establishes the analytical dataset and handles the transformations needed to make the three source systems comparable at the county-year level.
 
----
-
 5. Power BI Visualization and Analysis
 
 The processed CSV files are loaded into Power BI, which handles the final visualization and comparative analysis. Measures are created for mining employment change, mining employment dependence, labor-market change, demographic change, and the exploratory composite indicator.
@@ -109,27 +100,23 @@ The dashboard uses trend charts, a map, tables, and a scatterplot, arranged in r
 
 Dashboard Visualization Order
 
-1. **Statewide mining employment trend, 2000–2024** — establishes the statewide context and shows the 2011 peak and subsequent decline, using the full timeline to preserve historical context.
+1. Statewide mining employment trend, 2000–2024 — establishes the statewide context and shows the 2011 peak and subsequent decline, using the full timeline to preserve historical context.
 
-2. **Study-county map** — shows the seven selected counties geographically, with tooltips displaying 2011 mining employment and mining employment share. The map tooltip translates the share into something more intuitive: alongside the percentage, it shows an approximate worker ratio (e.g., "≈ 1 in 5 workers in coal"), which reads more naturally than a raw percentage when scanning the map.
+2. Study-county map — shows the seven selected counties geographically, with tooltips displaying 2011 mining employment and mining employment share. The map tooltip translates the share into something more intuitive: alongside the percentage, it shows an approximate worker ratio (e.g., "≈ 1 in 5 workers in coal"), which reads more naturally than a raw percentage when scanning the map.
 
-3. **County mining employment trajectories, 2000–2024** — compares mining employment trends across the seven counties, making differences in timing, scale, and persistence of decline visible.
+3. County mining employment trajectories, 2000–2024 — compares mining employment trends across the seven counties, making differences in timing, scale, and persistence of decline visible.
 
-4. **Individual county mining peak and change table** — shows each county's own mining employment peak year, peak mining employment, latest available mining employment, and percentage decline from that county's own peak, separate from the common 2011 reference year.
+4. Individual county mining peak and change table — shows each county's own mining employment peak year, peak mining employment, latest available mining employment, and percentage decline from that county's own peak, separate from the common 2011 reference year.
 
-5. **2011 mining employment dependence vs. change score scatterplot** — compares baseline mining employment dependence in 2011 with the exploratory composite change score. This is descriptive only; with seven counties the sample is too small to support predictive modeling.
+5. 2011 mining employment dependence vs. change score scatterplot — compares baseline mining employment dependence in 2011 with the exploratory composite change score. This is descriptive only; with seven counties the sample is too small to support predictive modeling.
 
-6. **Labor-market and demographic indicator breakdown** — shows the component indicators behind the composite comparison, so the reader can see which dimensions contribute to differences between counties rather than relying only on the overall score.
-
----
+6. Labor-market and demographic indicator breakdown — shows the component indicators behind the composite comparison, so the reader can see which dimensions contribute to differences between counties rather than relying only on the overall score.
 
 6. Design and Visual Development
 
 The visual design of the project was developed separately in Figma. The dashboard layout, visual hierarchy, typography, icons, and supporting graphic elements were designed in Figma and then incorporated into the final presentation.
 
 Figma was used to develop the overall visual structure and individual design elements, while Power BI handles the analytical charts, tables, map, scatterplot, and interactive components.
-
----
 
 7. Mining Employment Measures
 
@@ -139,26 +126,23 @@ For the 2011 county table, mining employment is filtered to that single year and
 
 The map tooltip translates that share into something more intuitive: alongside the percentage, it shows an approximate worker ratio (e.g., "≈ 1 in 5 workers in coal"), which reads more naturally than a raw percentage when scanning the map.
 
----
-
 8. Individual County Mining Peaks
 
 The county-level table uses each county's own mining employment history rather than assuming that 2011 was the peak for every county — it identifies each county's highest recorded mining employment year and compares that peak to the latest available figure to get a percent decline.
-
----
 
 9. Labor-Market and Demographic Change
 
 All outcome indicators use 2011 as the common baseline reference year, and the analysis considers changes in labor-market and demographic conditions between 2011 and the latest available year in each dataset. Examples include:
 
-- Employment-to-population ratio change.
-- Labor-force exit / not-in-labor-force change.
-- Population change.
-- Older-population change.
+Employment-to-population ratio change.
+
+Labor-force exit / not-in-labor-force change.
+
+Population change.
+
+Older-population change.
 
 All indicators are oriented so that higher values represent greater change in the direction being measured — a decline in employment-to-population ratio and a decline in population, for instance, are both flipped so that "more change" always points the same way. Population change specifically is calculated from the 2011 baseline to the latest year available in the ACS data.
-
----
 
 10. Exploratory Composite Indicator
 
@@ -168,23 +152,17 @@ The indicator combines selected labor-market and demographic measures covering c
 
 Each indicator is oriented so that higher values represent greater change. Because the measures use different units, each is converted to a common 0–1 scale using min-max normalization:
 
-```text
 Normalized value = (County value - Minimum value) / (Maximum value - Minimum value)
-```
 
 The minimum and maximum values are calculated across the seven study counties for each indicator. After normalization, the labor-market indicators are averaged into a Labor Change Score, and the demographic indicators are averaged into a Demographic Change Score. The overall indicator is:
 
-```text
-Composite Change Score = ((Labor Change Score + Demographic Change Score) / 2) × 100
-```
+Composite Change Score = ((Labor Change Score + Demographic Change Score) / 2) x 100
 
 Labor-market and demographic dimensions receive equal weight, a choice made for transparency rather than because it represents a theoretically preferred weighting scheme.
 
 The resulting scores are relative to the seven counties in this analysis. A score of 86, for example, doesn't mean a county experienced 86 percent socioeconomic change — it means the county ranks relatively high on the selected measures within this particular seven-county comparison. The indicator is best understood as a tool for comparing multidimensional change, not as a validated measure of overall socioeconomic conditions.
 
 Mining employment decline is kept separate from the composite indicator. This prevents the analysis from using the loss of mining jobs both as the measure of industrial decline and as part of the outcomes used to assess county change.
-
----
 
 11. Findings
 
@@ -206,8 +184,6 @@ Logan and McDowell make for a useful comparison here. Their mining employment sh
 
 This comparison shows that the level of mining employment dependence in 2011 does not, by itself, describe how a county changed afterward. The analysis therefore treats baseline mining dependence as a measure of structural exposure, separate from the labor-market and demographic indicators used to describe change.
 
----
-
 12. Limitations
 
 This analysis has several limitations worth noting.
@@ -224,8 +200,6 @@ Webster County has no mining-employment record for 2024 in the dataset used for 
 
 Finally, the composite indicator depends on the specific measures, normalization method, and equal-weighting scheme used here. Because each indicator is normalized against the seven-county sample, the scores are relative rather than absolute. They shouldn't be read as measures of overall county well-being or compared directly with other regions.
 
----
-
 13. Potential Policy Implications
 
 The differences across the seven counties suggest that policies addressing coal decline shouldn't lean solely on historical mining dependence as representative of community need. Counties with substantial and sometimes similar levels of mining dependence went through different combinations of labor-market and demographic change, which points to local conditions shaping the effects of industrial decline.
@@ -234,20 +208,16 @@ A more targeted approach could weigh multiple dimensions of county conditions al
 
 The analysis doesn't identify which specific policies would work better, and it doesn't establish why counties differed. The findings are better read as a case for more differentiated policy attention than as an evaluation of any particular intervention.
 
----
-
 14. Conclusion
 
 Mining employment in West Virginia declined substantially after the 2011 statewide peak, but the seven counties examined here didn't follow identical trajectories. They differed both in the timing and scale of their mining employment declines and in the labor-market and demographic changes that followed. Boone, for example, saw a particularly large decline in mining employment but didn't record the highest value on the composite indicator. At the same time, McDowell and Mingo experienced greater overall change on the measures used here.
 
 The main finding, then, isn't that one county was universally better or worse off than another. It's that counties with substantial mining dependence experienced different patterns of change after the statewide mining employment peak — which is also why mining dependence, mining employment decline, and change are worth treating as separate dimensions rather than collapsing into one story.
 
----
-
 15. Sources
 
-Mine Safety and Health Administration. (2024). *Mine Employment and Coal Production Database*. U.S. Department of Labor.
+Mine Safety and Health Administration. (2024). Mine Employment and Coal Production Database. U.S. Department of Labor.
 
-U.S. Bureau of Labor Statistics. (2024). *Local Area Unemployment Statistics*. U.S. Department of Labor.
+U.S. Bureau of Labor Statistics. (2024). Local Area Unemployment Statistics. U.S. Department of Labor.
 
-U.S. Census Bureau. (2024). *American Community Survey 5-year estimates, Table S0101: Age and Sex*. U.S. Department of Commerce.
+U.S. Census Bureau. (2024). American Community Survey 5-year estimates, Table S0101: Age and Sex. U.S. Department of Commerce.
