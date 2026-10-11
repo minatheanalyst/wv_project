@@ -1,4 +1,4 @@
-Regional Vulnerability After Industrial Decline: How Seven West Virginia Coal Counties Changed Since 2011
+Ground Level: Labor and Population Change in Seven West Virginia Coal Counties
 
 1. Introduction
 
