@@ -1,4 +1,4 @@
-Ground Level: Labor and Population Change in Seven West Virginia Coal Counties
+Ground Level: How Labor and Population Changed in Seven West Virginia Coal Counties After 2011
 
 1. Introduction
 
